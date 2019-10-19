@@ -434,5 +434,3 @@ CREATE TABLE    Master_Location_Municipality(
    STORAGE ( INITIAL 50K);
 
   
-
-  
