@@ -109,7 +109,7 @@ folder name
     * [Fallas graves en la seguridad de tarjetas de crédito y credenciales en Rappi](https://medium.com/advisability/tarjetas-credito-rappi-714e75166f7a). For this article you should talk about why Rappi was having issues with credit card's users information, how to store data of credit cards effectively, talk about what PCI DSS is and how you should handle information of credit cards; and finally lessons learned for your future projects and what you shouldn't do in order to protect your users.
     * [10 Reasons To Consider A Multi-Model Database](http://highscalability.com/blog/2015/3/4/10-reasons-to-consider-a-multi-model-database.html)
     * [Maybe Normalizing Isn't Normal
-](http://highscalability.com/blog/2015/3/4/10-reasons-to-consider-a-multi-model-database.html)
+](https://blog.codinghorror.com/maybe-normalizing-isnt-normal/)
     * [Who Needs Stored Procedures, Anyways?](https://blog.codinghorror.com/who-needs-stored-procedures-anyways/)
 11. Video:
     
