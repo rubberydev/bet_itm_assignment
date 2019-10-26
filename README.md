@@ -209,3 +209,62 @@ _**Importante:** La mesa directiva ha decidido implementar la estrategia de elim
     | action (INSERT, UPDATE, DELETE) |
     | User |
     | IP |
+
+---
+    
+## Trabajo grupal II
+
+| Asignatura    | Valor         | Fecha |
+| ------------- |:-------------:| -----:|
+| Adminitración de base de datos avanzada | 10% / 20% |  **Noviembre/23/2019** |
+
+_Tener en cuenta que el grupo que debe sustentar debemos definir la fecha de sustentación_
+
+Todos los ajustes que deban hacer al modelo de normalización para soportar las funcionalidades requeridas, deberán ser persistidos, generar nuevamente el diagrama entidad relación (No excel, no diagramas hechos a mano, tampoco diagramas que no coincidan con las tablas reportadas). 
+
+Por otro lado, deberán ajustar los datos para que sean lo más reales posibles, vamos a trabajar con menos datos, pero con mayor calidad, es decir, partidos programados, deberán cuidar las fechas de las apuestas y deberán insertar la información de tablas maestras o claves foráneas.
+
+Los grupos que no crearon claves foráneas ni primarias deberán hacerlo.
+
+1. ### Vistas:
+    Crear las siguientes vistas:
+    
+    - Sumar el valor ganado de todas las apuestas de los usuarios que están en estado ganado que se efectuaron en el transcurso de la semana y mostrarlas ordenadas por el valor más alto; El nombre de la vista será "GANADORES_SEMANALES" y tendrá dos columnas: nombre completo y valor acumulado.
+     
+        Considerar el siguiente query `select trunc(sysdate, 'DAY') start_of_the_week, trunc(sysdate, 'DAY')+6 end_of_the_week from dual;`
+
+        ![ganadores_semanales](images/ganadores_semanales.png).
+
+    - Nombre de la vista: DETALLES_APUESTAS. Esta vista deberá mostrar todos los detalles de apuestas simples que se efectuaron para un boleto en particular, tal como se muestra en el siguiente ejemplo:
+
+        ![detalles_apuestas](images/detalles_apuestas.png).
+
+        La idea es que cuando se llame la vista se pueda pasar el id de la apuesta para que muestre los detalles de ese boleto en particular, ejemplo: `SELECT * FROM DETALLES_APUESTAS WHERE APUESTAS.ID = 123`
+
+    - Nombre de la vista: RESUMEN_APUESTAS. Esta vista mostrará el resumen de cada apuesta efectuada en el sistema, la información de la siguiente imagen corresponderá a cada columna (Omitir la siguiente columna Pago máx.  incl. 5% bono (293.517,58 $)). La idea es que cuando se llame la vista, muestre la información únicamente de esa apuesta en particular: `SELECT * FROM RESUMEN_APUESTAS WHERE APUESTAS.ID = 123`. 
+
+        ![resumen_apuestas](images/resumen_apuestas.png).
+
+    - Para la siguiente vista deberán alterar el manejo de sesiones de usuario, el sistema deberá guardar el timestamp de la hora de sesión y el timestamp del fin de sesión, si el usuario tiene el campo fin de sesión en null, significa que la sesión está activa. Crear una vista que traiga las personas que tienen una sesión activa, ordenado por la hora de inicio de sesión, mostrando las personas que más tiempo llevan activas; adicional, deberá tener una columna que calcule cuántas horas lleva en el sistema con respecto a la hora actual, la siguiente columna será la cantidad de horas seleccionada en las preferencias de usuario, finalmente, habrá una columna que reste cuánto tiempo le falta para que se cierre la sesión (si aparece un valor negativo, significa que el usuario excedió el tiempo en el sistema)
+
+2. ### Trigger
+
+    1.Crear un trigger para TODAS las tablas que tienen creadas, el trigger deberá llenar la información de la tabla de auditoría cuando se produce una INSERCIÓN, ACTUALIZACIÓN y ELIMINACIÓN de registros (Recordar que estamos trabajando con SOFT deletion y por ende ningún usuario debería tener el privilegio de ELIMINAR registros). Para obtener la IP desde donde se produce la conexión, usar: `SQL> SELECT SYS_CONTEXT('USERENV','IP_ADDRESS') FROM dual;`
+
+3. ### Procedimientos almacenados
+    
+    1. Crear un procedimiento almacenado que reciba el nombre de la tabla y el id del registro que se desea actualizar, la idea de este procedimiento es que active el soft deletion de dicho registro ubicado en dicha tabla. Deberá tener manejo de excepciones dado el caso que el nombre de la tabla y/o el id no existan.
+    2. Crear un procedimiento que coloque un partido en estado "FINALIZADO", en ese momento deberá calcular las ganancias y pérdidas de cada apuesta hecha asociada a ese partido.
+    3. Crear un procedimiento que permita procesar el retiro de ganancias, recibirá el monto solicitado y el id del usuario, este procedimiento deberá insertar un registro en la tabla movimientos / retiros en estado "PENDIENTE", posteriormente deberá validar si el saldo es suficiente, si el usuario ha proveído toda la documentación exigida. También validará que si tenga una cuenta y un banco válido registrado. Si todo se valida sin problemas, deberá colocar el estado "APROBADO" en el registro correspondiente y deberá restar del saldo disponible el valor retirado. Si el procedimiento falla alguna validación, el estado pasará a "RECHAZADO". El sistema deberá almacenar cuál es la novedad por la cual se rechazó (Ya ustedes deciden si crean una nueva tabla, o colocan en la tabla de retiros una columna de observaciones).
+    4. Crear un procedimiento que permita realizar un depósito, similar al procedimiento anterior, deberá validar los posibles casos para que se apruebe / se rechace esta transacción. Ejemplo, validar los montos mínimos y máximos para cada medio de pago. Si hay alguna novedad guardar el motivo por el cual fue rechazado. El sistema deberá validar los límites de depósitos para cada usuario.
+    5. Crear un procedimiento almacenado que invoque la vista de sesiones activas y marque el campo fin de sesión en null.
+
+4. ### Artículos
+
+    Leer los siguientes artículos / ver video:
+
+    * [The Problem with Time & Timezones - Computerphile
+](https://www.youtube.com/watch?v=-5wpm-gesOY)
+    * [Netflix: What Happens When You Press Play?](http://highscalability.com/blog/2017/12/11/netflix-what-happens-when-you-press-play.html)
+    * [Why Uber Engineering Switched from Postgres to MySQL
+](https://eng.uber.com/mysql-migration/)
