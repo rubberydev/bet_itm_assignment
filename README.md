@@ -229,7 +229,7 @@ Los grupos que no crearon claves foráneas ni primarias deberán hacerlo.
 1. ### Vistas:
     Crear las siguientes vistas:
     
-    - Sumar el valor ganado de todas las apuestas de los usuarios que están en estado ganado que se efectuaron en el transcurso de la semana y mostrarlas ordenadas por el valor más alto; El nombre de la vista será "GANADORES_SEMANALES" y tendrá dos columnas: nombre completo y valor acumulado.
+    - Sumar el valor ganado de todas las apuestas de los usuarios que están en estado ganado de **aquellos partidos asociados a las apuestas que se efectuaron en el trancurso de la semana** y mostrarlas ordenadas por el valor más alto; El nombre de la vista será "GANADORES_SEMANALES" y tendrá dos columnas: nombre completo y valor acumulado.
      
         Considerar el siguiente query `select trunc(sysdate, 'DAY') start_of_the_week, trunc(sysdate, 'DAY')+6 end_of_the_week from dual;`
 
@@ -249,15 +249,37 @@ Los grupos que no crearon claves foráneas ni primarias deberán hacerlo.
 
 2. ### Trigger
 
-    1.Crear un trigger para TODAS las tablas que tienen creadas, el trigger deberá llenar la información de la tabla de auditoría cuando se produce una INSERCIÓN, ACTUALIZACIÓN y ELIMINACIÓN de registros (Recordar que estamos trabajando con SOFT deletion y por ende ningún usuario debería tener el privilegio de ELIMINAR registros). Para obtener la IP desde donde se produce la conexión, usar: `SQL> SELECT SYS_CONTEXT('USERENV','IP_ADDRESS') FROM dual;`
+    1. Crear un trigger para TODAS las tablas que tienen creadas, el trigger deberá llenar la información de la tabla de auditoría cuando se produce una INSERCIÓN, ACTUALIZACIÓN y ELIMINACIÓN de registros (Recordar que estamos trabajando con SOFT deletion y por ende ningún usuario debería tener el privilegio de ELIMINAR registros). Para obtener la IP desde donde se produce la conexión, usar: `SQL> SELECT SYS_CONTEXT('USERENV','IP_ADDRESS') FROM dual;`
+    2. Crear un(os) trigger(s) que permita(n) mantener el saldo del usuario **ACTUALIZADO**, es decir, si se produce un retiro, una recarga, una apuesta o hay ganancias de una apuesta, automáticamente deberá actualizar el saldo disponible del usuario.
+    3. Crear un trigger asociado a la tabla **PARTIDOS**, este trigger se disparará **solamente** cuando el partido pase a estado "FINALIZADO". El propósito de este trigger es ejecutar el o los procedimientos hechos para liquidar las ganancias y pérdidas de los usuarios que apostaron a ese partido.
+    4. Crear un trigger asociado a la tabla **DETALLES_APUESTAS**, este trigger mantendrá actualizado el campo _"valor_total"_ de la tabla **APUESTAS** 
 
 3. ### Procedimientos almacenados
     
-    1. Crear un procedimiento almacenado que reciba el nombre de la tabla y el id del registro que se desea actualizar, la idea de este procedimiento es que active el soft deletion de dicho registro ubicado en dicha tabla. Deberá tener manejo de excepciones dado el caso que el nombre de la tabla y/o el id no existan.
-    2. Crear un procedimiento que coloque un partido en estado "FINALIZADO", en ese momento deberá calcular las ganancias y pérdidas de cada apuesta hecha asociada a ese partido.
-    3. Crear un procedimiento que permita procesar el retiro de ganancias, recibirá el monto solicitado y el id del usuario, este procedimiento deberá insertar un registro en la tabla movimientos / retiros en estado "PENDIENTE", posteriormente deberá validar si el saldo es suficiente, si el usuario ha proveído toda la documentación exigida. También validará que si tenga una cuenta y un banco válido registrado. Si todo se valida sin problemas, deberá colocar el estado "APROBADO" en el registro correspondiente y deberá restar del saldo disponible el valor retirado. Si el procedimiento falla alguna validación, el estado pasará a "RECHAZADO". El sistema deberá almacenar cuál es la novedad por la cual se rechazó (Ya ustedes deciden si crean una nueva tabla, o colocan en la tabla de retiros una columna de observaciones).
-    4. Crear un procedimiento que permita realizar un depósito, similar al procedimiento anterior, deberá validar los posibles casos para que se apruebe / se rechace esta transacción. Ejemplo, validar los montos mínimos y máximos para cada medio de pago. Si hay alguna novedad guardar el motivo por el cual fue rechazado. El sistema deberá validar los límites de depósitos para cada usuario.
-    5. Crear un procedimiento almacenado que invoque la vista de sesiones activas y marque el campo fin de sesión en null.
+    _Nota: Para todos los procedimientos que involucren alguna acción del usuario tales como: agregar un retiro, realizar una recarga, hacer una apuesta, entre otros; deberá validar que la sesión del usuario esté activa, en caso de no estar activa, levantar una excepción._
+
+    1. Crear una función que reciba un argumento de tipo número, este representará el id de un usuario; la función retornará TRUE si el usuario se encuentra logueado en el sistema. (Usar esta función en todos los procedimientos donde se requiera validar que el usuario tenga una sesión activa.)
+    2. Crear un procedimiento almacenado que reciba el nombre de la tabla y el id del registro que se desea actualizar, la idea de este procedimiento es que active el soft deletion de dicho registro ubicado en dicha tabla. Deberá tener manejo de excepciones dado el caso que el nombre de la tabla y/o el id no existan. Nota: Usar (EXECUTE IMMEDIATE)[https://docs.oracle.com/cd/B19306_01/appdev.102/b14261/dynamic.htm#CHDGJEGD]
+    3. Crear un procedimiento que coloque un partido en estado "FINALIZADO", en ese momento deberá calcular las ganancias y pérdidas de cada apuesta hecha asociada a ese partido.
+    4. Crear un procedimiento que permita procesar el retiro de ganancias, recibirá el monto solicitado y el id del usuario, este procedimiento deberá insertar un registro en la tabla movimientos / retiros en estado "PENDIENTE", posteriormente deberá validar si el saldo es suficiente, si el usuario ha proveído toda la documentación exigida. También validará que si tenga una cuenta y un banco válido registrado. Si todo se valida sin problemas, deberá colocar el estado "APROBADO" en el registro correspondiente y deberá restar del saldo disponible el valor retirado. Si el procedimiento falla alguna validación, el estado pasará a "RECHAZADO". El sistema deberá almacenar cuál es la novedad por la cual se rechazó (Ya ustedes deciden si crean una nueva tabla, o colocan en la tabla de retiros una columna de observaciones).
+    5. Crear un procedimiento que permita realizar un depósito, similar al procedimiento anterior, deberá validar los posibles casos para que se apruebe / se rechace esta transacción. Ejemplo, validar los montos mínimos y máximos para cada medio de pago. Si hay alguna novedad guardar el motivo por el cual fue rechazado. El sistema deberá validar los límites de depósitos para cada usuario.
+    6. Crear un procedimiento almacenado que invoque la vista de sesiones activas y coloque el campo fin de sesión con el timestamp actual, esto aplicará solo para aquellos usuarios que han excedido el tiempo en el sistema dependiendo de sus preferencias personales.
+    7. Crear un procedimiento que reciba el ID de una APUESTA (Las que efectuan los usuarios) y reciba: id_usuario, valor, tipo_apuesta_id, cuota, opción ganadora (Ya cada uno mirará como manejan esta parte conforme al diseño que tengan). Con estos parámetros deberá insertar un registro en la tabla detalles de apuesta en estado "ABIERTA".
+    8. Crear un procedimiento (o varios, dependiendo de como quieran manejarlo) que calculará la cuota ganadora para cada tipo de apuesta utilizado (Es importante tener los datos necesarios para calcular la opción ganadora, ejemplo: goles totales, goles equipo 1 primer tiempo, goles equipo 2 primer tiempo y así sucesivamente), el procedimiento cumplirá las siguientes condiciones:
+        - Recibirá el id de un partido.
+        - Colocar toda la lógica dentro de una transacción
+        - Validar que el partido se encuentre finalizado.
+        - Recorrer los tipos de apuesta para el partido y calcular la cuota ganadora en los siguientes tipos de apuestas (actualizar las columnas que hubiere después de tener la cuota ganadora):
+            - Apuesta principal (Ganador Local, Empate, Ganador visitante)
+            - Más o menos (1.5) goles
+            - Más o menos (0.5) goles
+            - Más o menos (2.5) goles
+            - Más o menos (3.5) goles
+            - ¿Ambos equipos anotarán gol?
+            - ¿Quién ganará el primer tiempo?
+            - ¿Quién ganará el segundo tiempo?
+            - ¿Hay por lo menos un gol en cada tiempo?
+        - Luego de calcular cada cuota ganadora, deberá buscar *TODAS* las apuestas de los usuarios que apostaron a ese tipo de apuesta y que no se hayan liquidado; el sistema deberá cambiar las columnas correspondientes para determinar si es una GANANCIA o PERDIDA e insertar el valor de dicha operación en la tabla MOVIMIENTOS o en la tabla que estén utilizando para manejar las pérdidas y/o ganancias de los usuarios.
 
 4. ### Artículos
 
@@ -268,3 +290,7 @@ Los grupos que no crearon claves foráneas ni primarias deberán hacerlo.
     * [Netflix: What Happens When You Press Play?](http://highscalability.com/blog/2017/12/11/netflix-what-happens-when-you-press-play.html)
     * [Why Uber Engineering Switched from Postgres to MySQL
 ](https://eng.uber.com/mysql-migration/)
+
+5. ### Video / Sustentación
+    * Los estudiantes que pertenecen al grupo de los Martes y Jueves deberán realizar un video explicando los procedimientos y **EJECUTÁNDOLOS**, deberán preparar toda la data necesaria para que expliquen la lógica de cada uno de los puntos y se ejecuten durante el video. El video deberá durar entre 30 y 40 minutos.
+    * Los estudiantes que pertenecen al grupo de los Miércoles y Viernes deberán sustentar _presencialmente_; para esto es indispensable tener todos los datos listos ya que se invocará cualquier procedimiento. Es muy probable que la sustentación sea el día 22 de Noviembre (Tengo que organizar la dinámica de la sustentación y verificar la cantidad de grupos. El tiempo estimado de cada grupo debería ser de unos 15 minutos en promedio)
