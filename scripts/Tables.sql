@@ -9,7 +9,7 @@ CREATE TABLE Identity_Type (
    STORAGE ( INITIAL 50K);
    
   
- CREATE TABLE Phones (
+ CREATE TABLE Phone (
  		Id  NUMBER(30,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
 		MAXVALUE 9999999999999999999999999999,
         phone_number  VARCHAR2(35) NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE Identity_Type (
    STORAGE ( INITIAL 50K);
 
    
-    CREATE TABLE  Requisite_To_Retirement (
+    CREATE TABLE  Requisite_To_Withdraw (
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
 		 MAXVALUE 9999999999999,
          Description  VARCHAR2(40) NOT NULL,
@@ -82,12 +82,12 @@ CREATE TABLE Identity_Type (
   
   
   
-  CREATE TABLE  Retirement (
+  CREATE TABLE  Withdraw (
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
 		 MAXVALUE 9999999999999999,
 		 Value NUMBER(15,5),
 		 FK_ID_Person number(30,0) not null,
-		 Date_Retirement timestamp,
+		 Date_Withdraw timestamp,
 		 Approve_Requisite  VARCHAR2(40) NOT NULL,
          Flag  VARCHAR2(15),
          CONSTRAINT Retirement_pk PRIMARY KEY (Id))
@@ -128,53 +128,12 @@ CREATE TABLE Identity_Type (
    TABLESPACE BET_ITM
    STORAGE ( INITIAL 50K);
   
+    
   
   
+    
   
-   CREATE TABLE Probability_Bets(
-         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
-		 MAXVALUE 999999999,
-		 Type_Peso  VARCHAR2(15),
-		 Value_Peso NUMBER(15,5),
-         Flag  VARCHAR2(15),
-         CONSTRAINT Probability_Bets_pk PRIMARY KEY (Id))
-   TABLESPACE BET_ITM
-   STORAGE ( INITIAL 50K);
-  
-  
-  
-   CREATE TABLE   Type_Bet(
-         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
-		 MAXVALUE 999999999,
-		 Name  VARCHAR2(40),
-         Flag  VARCHAR2(15),
-         CONSTRAINT Type_Bet_pk PRIMARY KEY (Id))
-   TABLESPACE BET_ITM
-   STORAGE ( INITIAL 50K);
-
-  
-     CREATE TABLE    Template_Bet(
-         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
-		 MAXVALUE 999999999,
-		 Name_Template  VARCHAR2(40),
-		 FK_ID_Type_Bet number(30,0) not null,
-         Flag  VARCHAR2(15),
-         CONSTRAINT Template_Bet_pk PRIMARY KEY (Id))
-   TABLESPACE BET_ITM
-   STORAGE ( INITIAL 50K);
-  
- 
-     CREATE TABLE    Status_Bets(
-         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
-		 MAXVALUE 999999999,
-		 Status  VARCHAR2(40),
-         Flag  VARCHAR2(15),
-         CONSTRAINT Status_Bets_pk PRIMARY KEY (Id))
-   TABLESPACE BET_ITM
-   STORAGE ( INITIAL 50K);
-  
-  
-  CREATE TABLE    Teams(
+  CREATE TABLE    Team(
           Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
      Name_Team  VARCHAR2(40),
@@ -207,7 +166,6 @@ CREATE TABLE Identity_Type (
      Goal_Local_Firts_Time number(10,0),
      Date_Result timestamp,
      FK_ID_Status_Event  number(30,0) not null,
-     FK_ID_Template_Bet number(30,0) not null,
      Flag  VARCHAR2(15),
      CONSTRAINT Match_pk PRIMARY KEY (Id))
    TABLESPACE BET_ITM
@@ -215,21 +173,68 @@ CREATE TABLE Identity_Type (
   
   
   
-     CREATE TABLE    Bets(
+     CREATE TABLE    Bet(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
-     FK_ID_Person number(30,0) not null,   
+     FK_ID_Person number(30,0) not null,  
      value_bet number(20,5),
-     FK_ID_Match number(30,0) not null,
-     FK_ID_Template_Bet number(30,0) not null,
      Date_Bet timestamp,
+     Status Varchar(30),
+     Total_earned
      Flag  VARCHAR2(15),
      CONSTRAINT Bet_pk PRIMARY KEY (Id))
    TABLESPACE BET_ITM
    STORAGE ( INITIAL 50K); 
   
+
+
+CREATE TABLE    Quota_Bet(
+         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
+     MAXVALUE 999999999,
+     FK_ID_Match number(30,0) not null,   
+     FK_ID_Category number(30,0) not null,
+     Quota_1 float,
+     Quota_2 float,
+     Quota_3 float,
+     Quota_earned float,        
+     Status VARCHAR2(25),
+     Flag  VARCHAR2(15),
+     CONSTRAINT Quota_Bet_pk PRIMARY KEY (Id))
+   TABLESPACE BET_ITM
+   STORAGE ( INITIAL 50K); 
+
+
+
+     CREATE TABLE    Datail_Bet(
+         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
+     MAXVALUE 999999999,
+     FK_ID_Bet number(30,0) not null,   
+     value_bet number(20,5),
+     Date_Bet timestamp,
+     Status Varchar(30),
+     Total_earned float,
+     Flag  VARCHAR2(15),
+     CONSTRAINT Detail_Bet_pk PRIMARY KEY (Id))
+   TABLESPACE BET_ITM
+   STORAGE ( INITIAL 50K); 
+
   
-    CREATE TABLE       Limit_Bets(
+  
+
+
+
+     CREATE TABLE    Category_Bet(
+         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
+     MAXVALUE 999999999,
+     Name Varchar(50),
+     CONSTRAINT Category_Bet_pk PRIMARY KEY (Id))
+   TABLESPACE BET_ITM
+   STORAGE ( INITIAL 50K); 
+  
+
+
+
+  CREATE TABLE       Limit_Bet(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
      DateLimit timestamp,
@@ -253,19 +258,7 @@ CREATE TABLE Identity_Type (
    STORAGE ( INITIAL 50K);
   
   
-  
-       CREATE TABLE    History_Status_Bets(
-         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
-     MAXVALUE 999999999,
-     FK_ID_Status_Bet number(30,0) not null,
-     Date_Change_Status timestamp,
-     FK_ID_Bet number(30,0) not null,
-     Flag  VARCHAR2(15),
-     CONSTRAINT History_Status_Bets_pk PRIMARY KEY (Id))
-   TABLESPACE BET_ITM
-   STORAGE ( INITIAL 50K);
-  
-  
+    
   
       CREATE TABLE    Proof_Verification_user(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
@@ -318,7 +311,7 @@ CREATE TABLE    Master_Location_Municipality(
   
   
   
-   CREATE TABLE      Preferences(
+   CREATE TABLE      Preference(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
      Accept_Terms_Conditions  VARCHAR2(15) not null,
@@ -337,7 +330,7 @@ CREATE TABLE    Master_Location_Municipality(
   
 
   
-    CREATE TABLE    Lenguages(
+    CREATE TABLE    Lenguage(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
      Lenguage_Name VARCHAR2(15),
@@ -354,9 +347,9 @@ CREATE TABLE    Master_Location_Municipality(
      Name  VARCHAR2(30) not null,
      First_Last_Name VARCHAR2(30) not null,
      Second_Last_Name VARCHAR2(30) not null,
-     Genre VARCHAR2(30) not null,
+     Genus VARCHAR2(30) not null,
      FK_ID_Identity_Type number(30,0) not null,
-     Expedition_Place  VARCHAR2(30) not null,
+     Issue_Place  VARCHAR2(30) not null,
      Nationality VARCHAR2(30) not null,
      Birth_Date  date,
      Balance_available number(20,5),
@@ -369,7 +362,7 @@ CREATE TABLE    Master_Location_Municipality(
    TABLESPACE BET_ITM
    STORAGE ( INITIAL 50K);
   
-      CREATE TABLE    Retirement_Requisite(
+      CREATE TABLE    Withdraw_Requisite(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
      FK_ID_Requisite number(30,0) not null,
@@ -393,17 +386,6 @@ CREATE TABLE    Master_Location_Municipality(
    STORAGE ( INITIAL 50K);
   
   
-  
-     
-    CREATE TABLE  Template_bets_Probability_Bets(
-         Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
-     MAXVALUE 999999999,
-     FK_ID_Template_Bet number(30,0) not null,
-     FK_ID_Probabity_Bet number(30,0) not null,
-     Flag  VARCHAR2(15),
-     CONSTRAINT Template_bets_Probability_pk PRIMARY KEY (Id))
-   TABLESPACE BET_ITM
-   STORAGE ( INITIAL 50K);
   
   
   
