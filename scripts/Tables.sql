@@ -176,11 +176,11 @@ CREATE TABLE Identity_Type (
      CREATE TABLE    Bet(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
-     FK_ID_Person number(30,0) not null,  
+     FK_ID_Person number(30,0) not null,   
      value_bet number(20,5),
      Date_Bet timestamp,
      Status Varchar(30),
-     Total_earned
+     Total_earned float,
      Flag  VARCHAR2(15),
      CONSTRAINT Bet_pk PRIMARY KEY (Id))
    TABLESPACE BET_ITM
@@ -192,12 +192,12 @@ CREATE TABLE    Quota_Bet(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
      FK_ID_Match number(30,0) not null,   
-     FK_ID_Category number(30,0) not null,
-     Quota_1 float,
-     Quota_2 float,
-     Quota_3 float,
-     Quota_earned float,        
-     Status VARCHAR2(25),
+     FK_ID_Category_Bet number(30,0) not null,
+     Quota_1 number(15,5),
+     Quota_2 number(15,5),
+     Quota_3 number(15,5),
+     Quota_earned number(15,0),        
+     Status VARCHAR2(35),
      Flag  VARCHAR2(15),
      CONSTRAINT Quota_Bet_pk PRIMARY KEY (Id))
    TABLESPACE BET_ITM
@@ -205,14 +205,11 @@ CREATE TABLE    Quota_Bet(
 
 
 
-     CREATE TABLE    Datail_Bet(
+     CREATE TABLE    Detail_Bet(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
-     FK_ID_Bet number(30,0) not null,   
-     value_bet number(20,5),
-     Date_Bet timestamp,
-     Status Varchar(30),
-     Total_earned float,
+     FK_ID_Bet number(30,0) not null, 
+     FK_ID_Quota_Bet number(30,0) not null,
      Flag  VARCHAR2(15),
      CONSTRAINT Detail_Bet_pk PRIMARY KEY (Id))
    TABLESPACE BET_ITM
@@ -366,7 +363,7 @@ CREATE TABLE    Master_Location_Municipality(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
      FK_ID_Requisite number(30,0) not null,
-     FK_ID_Retirement number(30,0) not null,
+     FK_ID_Withdraw number(30,0) not null,
      Flag  VARCHAR2(15),
      CONSTRAINT Retirement_Requisite_pk PRIMARY KEY (Id))
    TABLESPACE BET_ITM
