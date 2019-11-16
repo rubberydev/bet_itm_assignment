@@ -1,4 +1,4 @@
-﻿Identification_number,Name,First_Last_Name,Second_Last_Name,Genre,FK_ID_Identity_Type,Expedition_Place,Nationality,Birth_Date,Balance_available,Birth_Place,FK_ID_Country ,FK_ID_Department,FK_ID_Municipality,Flag
+﻿Identification_number,Name,First_Last_Name,Second_Last_Name,Genus,FK_ID_Identity_Type,Issue_Place,Nationality,Birth_Date,Balance_available,Birth_Place,FK_ID_Country ,FK_ID_Department,FK_ID_Municipality,Flag
 10117220392,HERNAN DARIO,MEJIA,OCAMPO,M,1,2000-09-23 03:23:34.234,Colombia,1982-09-23,20000,Medellin,1,1,1,I
 10117220393,PAOLA ANDREA,LOPEZ,AGUDELO,F,1,2000-09-23 03:23:34.235,Colombia,1982-09-23,20001,Medellin,1,1,1,I
 10117220394,JOHN FREDY,RAMIREZ,CANO,M,1,2000-09-23 03:23:34.236,Colombia,1982-09-23,40001,Medellin,1,1,1,I

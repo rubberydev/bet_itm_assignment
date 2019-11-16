@@ -1,0 +1,175 @@
+Name_Country,Time_Zone,Flag
+Colombia,UTC?05:00,I
+China,UTC+08:00 (ChineseStandardTime),I
+Afghanistan,UTC+04:30,I
+Albania,UTC+01:00 (CET),I
+Algeria,UTC+01:00 (CET),I
+Andorra,UTC+01:00 (CET),I
+Angola,UTC+01:00 (WAT),I
+Argentina,UTC?03:00 (ART),I
+Armenia,UTC+04:00,I
+Austria,UTC+01:00 (CET),I
+Azerbaijan,UTC+04:00,I
+Bahamas,UTC?05:00 (EST),I
+Bahrain,UTC+03:00,I
+Bangladesh,UTC+06:00 (BDT),I
+Barbados,UTC?04:00,I
+Belarus,UTC+03:00 (FET),I
+Belgium,UTC+01:00 (CET),I
+Belize,UTC?06:00,I
+Benin,UTC+01:00 (WAT),I
+Bhutan,UTC+06:00 (BTT),I
+Bolivia,UTC?04:00,I
+BosniaandHerzegovina,UTC+01:00 (CET),I
+Botswana,UTC+02:00 (CAT),I
+Brunei,UTC+08:00,I
+Bulgaria,UTC+02:00 (EET),I
+BurkinaFaso,UTC±00:00,I
+Burundi,UTC+02:00 (CAT),I
+Cambodia,UTC+07:00,I
+Cameroon,UTC+01:00 (WAT),I
+CapeVerde,UTC?01:00 (CapeVerdeTime),I
+CentralAfricanRepublic,UTC+01:00 (WAT),I
+had,UTC+01:00 (WAT),I
+Comoros,UTC+03:00 (EAT),I
+RepublicoftheCongo,UTC+01:00 (WAT),I
+CostaRica,UTC?06:00,I
+Croatia,UTC+01:00 (CET),I
+Cuba,UTC?05:00,I
+Cyprus,UTC+02:00 (EET),I
+CzechRepublic,UTC+01:00 (CET)(CRT),I
+Djibouti,UTC+03:00 (EAT),I
+Dominica,UTC?04:00,I
+DominicanRepublic,UTC?04:00,I
+EastTimor,UTC+09:00,I
+Egypt,UTC+02:00 (EET),I
+ElSalvador,UTC?06:00,I
+EquatorialGuinea,UTC+01:00 (WAT),I
+Eritrea,UTC+03:00 (EAT),I
+Estonia,UTC+02:00 (EET),I
+Eswatini(Swaziland),UTC+02:00,I
+Ethiopia,UTC+03:00 (EAT),I
+Fiji,UTC+12:00,I
+Finland,UTC+02:00 (EET),I
+Gabon,UTC+01:00 (WAT),I
+Gambia,UTC±00:00,I
+Georgia,UTC+04:00,I
+Germany,UTC+01:00 (CET),I
+Ghana,UTC±00:00,I
+Greece,UTC+02:00 (EET),I
+Grenada,UTC?04:00,I
+Guatemala,UTC?06:00,I
+Guinea,UTC±00:00,I
+Guinea-Bissau,UTC±00:00,I
+Guyana,UTC?04:00,I
+Haiti,UTC?05:00,I
+Honduras,UTC?06:00,I
+HongKong (China),UTC+08:00 (HKT),I
+Hungary,UTC+01:00 (CET),I
+Iceland,UTC±00:00,I
+India,UTC+05:30 (IST),I
+Iran,UTC+03:30 (IRST),I
+Iraq,UTC+03:00,I
+Ireland,UTC±00:00 (WET),I
+Israel,UTC+02:00 (IST),I
+Italy,UTC+01:00 (CET),I
+IvoryCoast,UTC±00:00,I
+Jamaica,UTC?05:00,I
+Japan,UTC+09:00 (JST),I
+Jordan,UTC+02:00,I
+Kenya,UTC+03:00 (EAT),I
+Korea,North,UTC+09:00 (PyongyangTime),I
+Korea,South,UTC+09:00 (KoreaStandardTime),I
+Kosovo,UTC+01:00,I
+Kuwait,UTC+03:00 (ArabiaStandardTime),I
+Kyrgyzstan,UTC+06:00,I
+Laos,UTC+07:00,I
+Latvia,UTC+02:00 (EET),I
+Lebanon,UTC+02:00 (EET),I
+Lesotho,UTC+02:00,I
+Liberia,UTC±00:00,I
+Libya,UTC+02:00 (EET),I
+Liechtenstein,UTC+01:00 (CET),I
+Lithuania,UTC+02:00 (EET),I
+Luxembourg,UTC+01:00 (CET),I
+Macau (China),UTC+08:00 (MacauStandardTime),I
+Madagascar,UTC+03:00 (EAT),I
+Malawi,UTC+02:00 (CAT),I
+alaysia,UTC+08:00 (MalaysianStandardTime),I
+Maldives,UTC+05:00,I
+Mali,UTC±00:00,I
+Malta,UTC+01:00 (CET),I
+MarshallIslands,UTC+12:00,I
+Mauritania,UTC±00:00,I
+Mauritius,UTC+04:00 (MauritiusTime),I
+Moldova,UTC+02:00 (EET),I
+Monaco,UTC+01:00 (CET),I
+Montenegro,UTC+01:00 (CET),I
+Morocco,UTC+01:00 (CET)[5],I
+Mozambique,UTC+02:00 (CAT),I
+Myanmar,UTC+06:30 (MST),I
+Namibia,UTC+01:00 (WAT),I
+Nauru,UTC+12:00,I
+Nepal,UTC+05:45 (NepalTime),I
+Nicaragua,UTC?06:00,I
+Niger,UTC+01:00 (WAT),I
+Nigeria,UTC+01:00 (WAT),I
+NorthMacedonia,UTC+01:00 (CET),I
+Norway,UTC+01:00 (CET),I
+Oman,UTC+04:00,I
+Pakistan,UTC+05:00 (PKT),I
+Palau,UTC+09:00,I
+Palestine,UTC+02:00,I
+Panama,UTC?05:00,I
+Paraguay,UTC?04:00,I
+Peru,UTC?05:00 (PET),I
+Philippines,UTC+08:00 (PHT),I
+Poland,UTC+01:00 (CET),I
+Qatar,UTC+03:00 (ArabiaStandardTime),I
+Romania,UTC+02:00 (EET),I
+Rwanda,UTC+02:00 (CAT),I
+SaintKittsandNevis,UTC?04:00,I
+SaintLucia,UTC?04:00,I
+SaintVincentandtheGrenadines,UTC?04:00,I
+Samoa,UTC+13:00,I
+SanMarino,UTC+01:00 (CET),I
+SãoToméandPríncipe,UTC+00:00,I
+SaudiArabia,UTC+03:00 (ArabiaStandardTime),I
+Senegal,UTC±00:00,I
+Serbia,UTC+01:00 (CET),I
+Seychelles,UTC+04:00 (SeychellesTime),I
+SierraLeone,UTC±00:00,I
+Singapore,UTC+08:00 (SST),I
+Slovakia,UTC+01:00 (CET),I
+Slovenia,UTC+01:00 (CET),I
+SolomonIslands,UTC+11:00,I
+Somalia,UTC+03:00 (EAT),I
+SouthSudan,UTC+03:00 (EAT),I
+SriLanka,UTC+05:30 (SLST),I
+Sudan,UTC+02:00,I
+Suriname,UTC?03:00,I
+Sweden,UTC+01:00 (CET),I
+Switzerland,UTC+01:00 (CET),I
+Syria,UTC+02:00 (EET),I
+Taiwan,UTC+08:00,I
+Tajikistan,UTC+05:00,I
+Tanzania,UTC+03:00 (EAT),I
+Thailand,UTC+07:00 (THA),I
+Togo,UTC±00:00,I
+Tonga,UTC+13:00,I
+TrinidadandTobago,UTC?04:00 (AST),I
+Tunisia,UTC+01:00 (CET),I
+Turkey,UTC+03:00 (TRT),I
+Turkmenistan,UTC+05:00,I
+Tuvalu,UTC+12:00,I
+Uganda,UTC+03:00 (EAT),I
+UnitedArabEmirates,UTC+04:00,I
+Uruguay,UTC?03:00,I
+Uzbekistan,UTC+05:00 (UzbekistanTime),I
+Vanuatu,UTC+11:00,I
+VaticanCity,UTC+01:00 (CET),I
+Venezuela,UTC?04:00,I
+Vietnam,UTC+07:00 (IndochinaTime),I
+Yemen,UTC+03:00,I
+Zambia,UTC+02:00 (CAT),I
+Zimbabwe,UTC+02:00 (CAT),I
