@@ -20,8 +20,7 @@ CREATE TABLE Identity_Type (
    TABLESPACE BET_ITM
    STORAGE ( INITIAL 50K);
   
-  
-  
+    
    CREATE TABLE Bonus (
  		Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
 		MAXVALUE 9999999999999999999999999999,
@@ -205,13 +204,13 @@ CREATE TABLE    Quota_Bet(
          Id  NUMBER(10,0) GENERATED  ALWAYS AS IDENTITY MINVALUE 1 
      MAXVALUE 999999999,
      FK_ID_Bet number(30,0) not null, 
-     FK_ID_Quota_Match_ number(30,0) not null,
+     FK_ID_QUOTA_BET number(30,0) not null,
      Flag  VARCHAR2(15),
      CONSTRAINT Detail_Bet_pk PRIMARY KEY (Id))
    TABLESPACE BET_ITM
    STORAGE ( INITIAL 50K); 
 
-  
+  DROP TABLE Detail_Bet;
   
 
      CREATE TABLE    Category_Bet(

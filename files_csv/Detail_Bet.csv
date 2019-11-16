@@ -1,4 +1,4 @@
-FK_Bet_Id,Fk_Quota_Match_Id,Flag
+FK_Bet_Id,FK_ID_QUOTA_BET,Flag
 1,1,I
 1,2,I
 1,3,I
