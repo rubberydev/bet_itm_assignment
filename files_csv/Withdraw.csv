@@ -1,4 +1,4 @@
-Value,Fk_Person, Date_Withdraw,Approve_Requisite,Flag
+Value,Fk_Id_Person, Date_Withdraw,Approve_Requisite,Flag
 30000,1,2019-11-02 04:00:34.121,Aprobado,I
 20000,2,2019-11-03 04:00:34.122,Aprobado,I
 15000,3,2019-11-01 04:00:34.123,Aprobado,I

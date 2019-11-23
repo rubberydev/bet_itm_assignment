@@ -1,4 +1,4 @@
-Fk_Id_Status_Verification,Fk_Person,Size_File,Description,URL,Extension_File,Flag
+Fk_Id_Status_Verification,Fk_id_Person,Size_File,Description,URL,Extension_File,Flag
 1,1,1.5,Factura,C:\Users\Usuario\Desktop\Datos_User\nuevos,JPG,I
 1,1,2.5,comprobante deposito,C:\Users\Usuario\Desktop\Datos_User\nuevos,PNG,I
 2,1,3.5,identificacion,C:\Users\Usuario\Desktop\Datos_User\nuevos,JPG,I

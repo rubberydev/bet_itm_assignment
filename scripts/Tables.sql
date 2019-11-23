@@ -209,8 +209,6 @@ CREATE TABLE    Quota_Bet(
      CONSTRAINT Detail_Bet_pk PRIMARY KEY (Id))
    TABLESPACE BET_ITM
    STORAGE ( INITIAL 50K); 
-
-  DROP TABLE Detail_Bet;
   
 
      CREATE TABLE    Category_Bet(

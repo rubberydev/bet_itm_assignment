@@ -1,4 +1,4 @@
-Value,FK_Person,Date_Deposit,FK_Status_Deposit,FK_Id_Mode_Pay,Flag,Limit_Deposit
+Value,FK_ID_Person,Date_Deposit,FK_ID_Status_Deposit,FK_Id_Mode_Pay,Flag,Limit_Deposit
 30000,1,2019-10-01 04:00:34.121,4,3,I,999999999
 40000,2,2019-10-01 04:00:34.122,4,3,I,999999999
 25000,3,2019-10-01 04:00:34.123,4,3,I,999999999

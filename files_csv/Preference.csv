@@ -1,4 +1,4 @@
-Accept_Teams_Conditions,Receive_Information,Fk_Id_Languages_To_Email,Bulletin_Information,Email_Bets,Send_sms,Notificartions,Notices_Tickets_Bets,FK_Id_persona,Flag
+Accept_Teams_Conditions,Receive_Information,Fk_Id_Languages_To_Email,Bulletin_Information,Email_Bets,Send_sms,Notifications,Notices_Tickets_Bets,FK_Id_person,Flag
 APROBADO,APROBADO,1,APROBADO,APROBADO,APROBADO,APROBADO,APROBADO,1,I
 APROBADO,APROBADO,1,APROBADO,APROBADO,APROBADO,APROBADO,APROBADO,2,I
 APROBADO,APROBADO,1,APROBADO,APROBADO,APROBADO,APROBADO,APROBADO,3,I

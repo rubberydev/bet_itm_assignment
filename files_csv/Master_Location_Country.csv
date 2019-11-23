@@ -1,4 +1,4 @@
-Name_Country,Time_Zone,Flag
+Name_Country,Zone_Time,Flag
 Colombia,UTC?05:00,I
 China,UTC+08:00 (ChineseStandardTime),I
 Afghanistan,UTC+04:30,I

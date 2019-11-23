@@ -1,4 +1,4 @@
-FK_Match_Id,Fk_category_Id,Cuota_1,Cuota_2,Cuota_3,Quota_earned,Status,Flag
+FK_id_Match,Fk_Id_category_bet,Quota_1,Quota_2,Quota_3,Quota_earned,Status,Flag
 1,1,2.15,3.1,3.7,1,Pendiente,I
 1,2,1.28,1.35,1.72,2,Pendiente,I
 1,11,0,2.2,4.3,2,Pendiente,I
