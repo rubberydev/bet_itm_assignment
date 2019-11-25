@@ -406,4 +406,7 @@ CREATE TABLE    Master_Location_Municipality(
    TABLESPACE BET_AUDITING 
    STORAGE ( INITIAL 50K);
 
+   alter table preference add limit_time_sesion number(4,0) null;
+
+
   
