@@ -294,3 +294,45 @@ Los grupos que no crearon claves foráneas ni primarias deberán hacerlo.
 5. ### Video / Sustentación
     * Los estudiantes que pertenecen al grupo de los Martes y Jueves deberán realizar un video explicando los procedimientos y **EJECUTÁNDOLOS**, deberán preparar toda la data necesaria para que expliquen la lógica de cada uno de los puntos y se ejecuten durante el video. El video deberá durar entre 30 y 40 minutos.
     * Los estudiantes que pertenecen al grupo de los Miércoles y Viernes deberán sustentar _presencialmente_; para esto es indispensable tener todos los datos listos ya que se invocará cualquier procedimiento. Es muy probable que la sustentación sea el día 22 de Noviembre (Tengo que organizar la dinámica de la sustentación y verificar la cantidad de grupos. El tiempo estimado de cada grupo debería ser de unos 15 minutos en promedio)
+
+#### Criterio de Calificación
+
+Calificación Trabajo grupal II
+
+**1. Vistas (1.0):** Explicar brevemente cada vista las tablas que se involucran y hacer los selects a las tablas bases para corroborar que las vistas están funcionando bien con datos reales.
+  - GANADORES_SEMANALES **(0.25)**:
+  - DETALLES_APUESTAS **(0.25)**:
+  - RESUMEN_APUESTAS **(0.25)**:
+  - SESIONES_ACTIVAS **(0.25)**:
+  
+**2. Trigger (1.0):**
+  - AUDITORIA **(0.25)**: Para este basta con coger unas 2 o 3 tablas e insertar o actualizar algún registro y luego mostrar la tabla auditorías. Intentar hacer un DELETE con el usuario que están haciendo la demostración.
+  - SALARIO_ACTUALIZADO **(0.25)**:
+    - Recarga **(0.0625)**: Mostrar el saldo del usuario, insertar un registro que represente una recarga y luego mostrar el saldo del usuario actualizado.
+    - Apuesta **(0.0625)**: Mostrar el saldo del usuario, insertar un registro que represente una apuesta y luego mostrar el saldo del usuario actualizado.
+    - Retiro **(0.0625)**: Mostrar el saldo del usuario, insertar un registro que represente un retiro APROBADO y luego mostrar el saldo del usuario actualizado.
+    - Ganancia apuesta **(0.0625)**: Mostrar el saldo del usuario, insertar un registro que represente una ganancia de una apuesta y luego mostrar el saldo del usuario actualizado.
+  - PARTIDO FINALIZADO **(0.25)**:
+  - DETALLES_APUESTAS **(0.25)**:
+  
+**3. Procedimientos Almacenados (1.0):** No olviden que para cada procedimiento se tendrá en cuenta que existan excepciones.
+  - Usuario logueado en sistema **(0.1):** 
+  - Soft deletion **(0.1):**
+  - Partido finalizado **(0.1):**
+  - Retiro Ganancias **(0.1):**
+  - Depósitos **(0.1):**
+  - Sesiones activas **(0.1):**
+  - Apuestas abiertas **(0.1):**
+  - Cuota ganadora **(0.3):**
+  
+**4. Artículos (1.0):**
+  - Timezones **(0.33):**
+  - Netflix **(0.33):**
+  - Uber **(0.33):**
+  
+**5. Video (1.0):**
+  - Calidad del video **(0.2):**
+  - Calidad del sonido **(0.2):**
+  - Tiempo menor o igual a 30 minutos **(0.4):**
+  - Hablan todos los integrantes **(0.1):**
+  - Repositorio con todos los archivos organizados y fáciles de encontrar **(0.1):**
