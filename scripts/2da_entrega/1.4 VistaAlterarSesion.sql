@@ -17,8 +17,8 @@ BEGIN
   RETURN total_diferencia;
 END;
 
-CREATE VIEW HANDLE_SESSION_USER AS
-SELECT sesion.id, 
+CREATE OR REPLACE VIEW HANDLE_SESSION_USER AS
+SELECT person.id, 
      concat(person.name, concat(' ', person.first_last_name)) username, 
      sesion.email, 
      sesion.date_sesion initial_date_session, 
