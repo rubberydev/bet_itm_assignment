@@ -12,5 +12,4 @@ DBMS_OUTPUT.PUT_LINE('Start trigger when a match switch to finished status.');
         
     END IF;
 END;
-
 --UPDATE Match SET FK_ID_STATUS_EVENT = 4 WHERE ID = 4;

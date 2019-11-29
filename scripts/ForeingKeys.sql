@@ -59,3 +59,7 @@ ALTER TABLE LEGITTRIP.ZONE_TIME_LOCATION_DEPARTAMEN ADD CONSTRAINT FK_MASTER_LOC
 ALTER TABLE LEGITTRIP.ZONE_TIME_LOCATION_DEPARTAMEN ADD CONSTRAINT FK_MASTER_ZONE_TIME_DEPARTMENT FOREIGN KEY (FK_ID_ZONE_TIME) REFERENCES LEGITTRIP.MASTER_ZONE_TIME(ID);
 
 update preference set limit_time_sesion = 5
+
+update detail_bet set quota_bookmaker = (select 1 from quota_bet where quota_bet.quota_1 <> 0 and detail_bet.fk_id_quota_bet = quota_bet.id);
+
+update detail_bet set quota_bookmaker = 2 where quota_bookmaker is null;
