@@ -1,4 +1,4 @@
-create or replace trigger Actualizacion_saldo AFTER INSERT OR UPDATE OR DELETE on Deposit for each row
+create or replace trigger Actilizacion_saldo AFTER INSERT OR UPDATE OR DELETE on Deposit for each row
 begin 
   IF INSERTING THEN 
       update PERSON 
