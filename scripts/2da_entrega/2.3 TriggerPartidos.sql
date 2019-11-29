@@ -1,9 +1,10 @@
 CREATE OR REPLACE TRIGGER UPDATE_INFO_RELATED_TO_FINISHED_MATCH
-AFTER UPDATE ON MATCH
+BEFORE UPDATE ON MATCH
 FOR EACH ROW
+DECLARE
+  earned_quota quota_bet.quota_1%TYPE;
 BEGIN
 DBMS_OUTPUT.PUT_LINE('Start trigger when a match switch to finished status.');
-                                       --Mirar sin es necesario comprobar que el estado anterior no sea finalizado
     IF :NEW.FK_ID_STATUS_EVENT = 4 AND :OLD.FK_ID_STATUS_EVENT <> 4 THEN
         --Execute all process to finish earning and losings by wagerer
         DBMS_OUTPUT.PUT_LINE('Start after to finish match');
@@ -13,3 +14,4 @@ DBMS_OUTPUT.PUT_LINE('Start trigger when a match switch to finished status.');
     END IF;
 END;
 --UPDATE Match SET FK_ID_STATUS_EVENT = 4 WHERE ID = 4;
+
