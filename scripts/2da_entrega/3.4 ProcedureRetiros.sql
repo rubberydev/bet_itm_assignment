@@ -17,10 +17,13 @@ begin
     IF Sald > 0 and Verificati =0 and Bank>=1 THEN
         update WITHDRAW
         set APPROVE_REQUISITE='APROBADO'
-        where FK_ID_PERSON=id_person;
+        where FK_ID_PERSON=id_person and VALUE=ValueWithdraw;
     ELSE
         DBMS_OUTPUT.PUT_LINE('No cumplio con los requisitos = ' || 
         Sald || Verificati); 
+        update WITHDRAW
+        set APPROVE_REQUISITE='RECHAZADO'
+        where FK_ID_PERSON=id_person and value = ValueWithdraw;
         Insert into WITHDRAW_REJECTED(fk_id_withdraw,date_rejected,FLAG) select W.id,W.date_withdraw,'I' from withdraw W where W.fk_id_person=id_person and W.value=ValueWithdraw;
         CLOSE Saldo;
         CLOSE Verification;

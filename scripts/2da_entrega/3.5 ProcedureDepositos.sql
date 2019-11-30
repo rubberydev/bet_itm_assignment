@@ -8,6 +8,9 @@ begin
             where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
         else 
             DBMS_OUTPUT.PUT_LINE('No cumplio con los requisitos '); 
+			update DEPOSIT
+            set FK_ID_STATUS_DEPOSIT=3
+            where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
             Insert into DEPOSITE_REJECTED(fk_id_deposite,date_rejected,FLAG) select D.id,D.date_deposit,'I' from deposit D where d.fk_id_person=id_person and D.value=ValueDeposite;
         end if;
     ELSIF PaymentMethod=2 then 
@@ -17,6 +20,9 @@ begin
             where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
         else 
             DBMS_OUTPUT.PUT_LINE('No cumplio con los requisitos '); 
+			update DEPOSIT
+            set FK_ID_STATUS_DEPOSIT=3
+            where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
             Insert into DEPOSITE_REJECTED(fk_id_deposite,date_rejected,FLAG) select D.id,D.date_deposit,'I' from deposit D where d.fk_id_person=id_person and D.value=ValueDeposite;
         end if;
     ELSIF PaymentMethod=3 then 
@@ -26,6 +32,9 @@ begin
             where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
         else 
             DBMS_OUTPUT.PUT_LINE('No cumplio con los requisitos '); 
+			update DEPOSIT
+            set FK_ID_STATUS_DEPOSIT=3
+            where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
             Insert into DEPOSITE_REJECTED(fk_id_deposite,date_rejected,FLAG) select D.id,D.date_deposit,'I' from deposit D where d.fk_id_person=id_person and D.value=ValueDeposite;
         end if;
     ELSIF PaymentMethod=4 then 
@@ -35,6 +44,9 @@ begin
             where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
         else 
              DBMS_OUTPUT.PUT_LINE('No cumplio con los requisitos '); 
+			 update DEPOSIT
+            set FK_ID_STATUS_DEPOSIT=3
+            where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
              Insert into DEPOSITE_REJECTED(fk_id_deposite,date_rejected,FLAG) select D.id,D.date_deposit,'I' from deposit D where d.fk_id_person=id_person and D.value=ValueDeposite;
 
         end if;
@@ -45,6 +57,9 @@ begin
             set FK_ID_STATUS_DEPOSIT=4
             where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
         else
+		    update DEPOSIT
+            set FK_ID_STATUS_DEPOSIT=3
+            where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
             Insert into DEPOSITE_REJECTED(fk_id_deposite,date_rejected,FLAG) select D.id,D.date_deposit,'I' from deposit D where d.fk_id_person=id_person and D.value=ValueDeposite;
         end if;
     ELSIF PaymentMethod=6 then 
@@ -54,6 +69,9 @@ begin
             where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
         else 
             DBMS_OUTPUT.PUT_LINE('No cumplio con los requisitos '); 
+			update DEPOSIT
+            set FK_ID_STATUS_DEPOSIT=3
+            where FK_ID_PERSON=id_person and date_deposit=Date_Depo;
             Insert into DEPOSITE_REJECTED(fk_id_deposite,date_rejected,FLAG) select D.id,D.date_deposit,'I' from deposit D where d.fk_id_person=id_person and D.value=ValueDeposite;
         end if;
     End IF;
