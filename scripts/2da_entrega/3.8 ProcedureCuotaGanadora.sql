@@ -1,9 +1,12 @@
 CREATE OR REPLACE FUNCTION DO_OPERATIONS_QUOTA_EARNED( value_bet in float, quota_1 in float, quota_2 in float, quota_3 in float, 
-earned_quota in int, fk_category_bet in int, total_goal_local in int, total_goal_visit in int, total_goal_local_first_time in int, total_goal_visit_first_time in int, id_match in int )
+earned_quota in int, fk_category_bet in int, total_goal_local in int, total_goal_visit in int, total_goal_local_first_time in int, 
+total_goal_visit_first_time in int, id_match in int )
 RETURN float AS final_result float;
     total float := value_bet;
-    quota_earned_defined number := 0;
+    quota_earned_defined quota_bet.quota_earned%TYPE := 0;
 BEGIN
+
+    DBMS_OUTPUT.PUT_LINE('Empezo');
     --Apuesta principal ID 1
     IF fk_category_bet = 1 and total_goal_local > total_goal_visit THEN
         DBMS_OUTPUT.PUT_LINE('gano el local');
@@ -16,7 +19,7 @@ BEGIN
         quota_earned_defined := 2;
     END IF;
   
-        ---Más o menos (1.5) goles ID 7
+       ---Más o menos (1.5) goles ID 7
     IF fk_category_bet = 7 and total_goal_local+total_goal_visit >1.5 THEN
         quota_earned_defined := 2 ;
     else
@@ -90,7 +93,7 @@ BEGIN
         quota_earned_defined := 3;
     END IF;
     
-  UPDATE quota_bet SET quota_bet.quota_earned = quota_earned_defined where fk_id_match = id_match;
+  --UPDATE quota_bet SET quota_bet.quota_earned = quota_earned_defined where fk_id_match = id_match;
   
   IF earned_quota = 1 and earned_quota = quota_earned_defined THEN
      total := value_bet + value_bet * quota_1;
@@ -117,19 +120,15 @@ BEGIN
     fetch cursor_validate_status_match into aux_cursor_validate_status_match;
 
     IF aux_cursor_validate_status_match = 1 THEN
+        dbms_output.put_line('CALCULATE_QUOTA_EARNED ....');
         OPEN c1 FOR SELECT
             category_bet.name,
             bet.value_bet,
-        do_operations_quota_earned(bet.value_bet, 
-            quota_bet.quota_1, 
-            quota_bet.quota_2, 
-            quota_bet.quota_3, 
-            detail_bet.quota_bookmaker, 
-            fk_id_category_bet,
-            match.goal_local,
-            match.goal_visit,
-            match.goal_local_firts_time,
-            match.goal_visit_firts_time,
+            DO_OPERATIONS_QUOTA_EARNED( bet.value_bet, quota_bet.quota_1, 
+            quota_bet.quota_2, quota_bet.quota_3, 
+            detail_bet.quota_bookmaker, quota_bet.fk_id_category_bet,
+            match.goal_local, match.goal_visit,
+            match.goal_local_firts_time, match.goal_visit_firts_time,
             match.id) total_earnings,
             quota_bet.quota_1,
             quota_bet.quota_2,
@@ -157,7 +156,7 @@ BEGIN
 END;
 
 
-
+/*
 --DEBUGGING
 select * from quota_bet where fk_id_match = 1;
 update quota_bet set quota_earned = 0 where fk_id_match = 1;
@@ -184,3 +183,4 @@ update category_bet set name = 'Quien ganara el 1er tiempo?' where id = 12;
 update category_bet set name = 'Quien ganara el 2do tiempo?' where id = 13;
 update category_bet set name = 'Resultado del partido y ambos equipos anotan' where id = 14;
 update category_bet set name = 'Hay por lo menos un gol en cada tiempo?' where id = 15;
+*/
