@@ -49,4 +49,4 @@ BEGIN
 --rollback; 
 END;
 
-select * from withdraw_rejected order by id desc;
+select * from withdraw_rejected;
