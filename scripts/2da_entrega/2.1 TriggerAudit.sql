@@ -4,10 +4,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ; 
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'Bet',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -20,7 +20,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger BONUS_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON BONUS
@@ -28,10 +28,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ; 
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'BONUS',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -44,7 +44,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger BONUS_PERSON_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON BONUS_PERSON
@@ -52,10 +52,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'BONUS_PERSON',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -68,7 +68,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger CATEGORY_BET_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON CATEGORY_BET
@@ -76,10 +76,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'CATEGORY_BET',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -92,6 +92,7 @@ BEGIN
   END IF;
 END;
 
+/
 
 CREATE OR REPLACE trigger DATA_FINANCIAL_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON DATA_FINANCIAL
@@ -99,10 +100,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'DATA_FINANCIAL',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -115,17 +116,17 @@ BEGIN
   END IF;
 END;
 
-
+/
 CREATE OR REPLACE trigger DEPOSIT_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON DEPOSIT
 FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'DEPOSIT',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -139,7 +140,7 @@ BEGIN
 END;
 
 
-
+/
 
 CREATE OR REPLACE trigger DETAIL_BET_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON DETAIL_BET
@@ -147,10 +148,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'DETAIL_BET',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -163,7 +164,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger IDENTITY_TYPE_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON IDENTITY_TYPE
@@ -171,10 +172,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'IDENTITY_TYPE',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -187,6 +188,7 @@ BEGIN
   END IF;
 END;
 
+/
 
 CREATE OR REPLACE trigger LENGUAGE_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON LENGUAGE
@@ -194,10 +196,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'LENGUAGE',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -210,7 +212,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger LIMIT_BET_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON LIMIT_BET
@@ -218,10 +220,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'LIMIT_BET',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -234,7 +236,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger MASTER_LOCATION_COUNTRY_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON MASTER_LOCATION_COUNTRY
@@ -242,10 +244,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'MASTER_LOCATION_COUNTRY',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -258,6 +260,7 @@ BEGIN
   END IF;
 END;
 
+/
 
 CREATE OR REPLACE trigger MASTER_LOCATION_DEPARTMENT_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON MASTER_LOCATION_DEPARTAMENT
@@ -265,10 +268,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'MASTER_LOCATION_DEPARTAMENT',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -281,6 +284,7 @@ BEGIN
   END IF;
 END;
 
+/
 
 
 
@@ -290,10 +294,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'MASTER_LOCATION_MUNICIPALITY',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -306,7 +310,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 
 CREATE OR REPLACE trigger MASTER_ZONE_TIME_AUDIT
@@ -315,10 +319,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'MASTER_ZONE_TIME',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -332,7 +336,7 @@ BEGIN
 END;
 
 
-
+/
 	
 CREATE OR REPLACE trigger MATCH
 BEFORE INSERT OR DELETE OR UPDATE ON MATCH
@@ -340,10 +344,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'MATCH',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -356,7 +360,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 
 CREATE OR REPLACE trigger PERSON
@@ -365,10 +369,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'PERSON',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -381,7 +385,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger PHONE
 BEFORE INSERT OR DELETE OR UPDATE ON PHONE
@@ -389,10 +393,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'PHONE',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -406,7 +410,7 @@ BEGIN
 END;
 
 
-
+/
 
 CREATE OR REPLACE trigger PREFERENCE_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON PREFERENCE
@@ -414,10 +418,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'PREFERENCE',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -431,6 +435,7 @@ BEGIN
 END;
 
 
+/
 
 
 CREATE OR REPLACE trigger PROOF_VERIFICATION_USER_AUDIT
@@ -439,10 +444,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'PROOF_VERIFICATION_USER',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -456,6 +461,7 @@ BEGIN
 END;
 
 
+/
 
 CREATE OR REPLACE trigger QUOTA_BET_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON QUOTA_BET
@@ -463,10 +469,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'QUOTA_BET',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -479,7 +485,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 
 CREATE OR REPLACE trigger REQUISITE_TO_WITHDRAW_AUDIT
@@ -488,10 +494,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'REQUISITE_TO_WITHDRAW',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -504,7 +510,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger SESION_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON SESION
@@ -512,10 +518,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'SESION',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -529,7 +535,7 @@ BEGIN
 END;
 
 
-
+/
 
 
 CREATE OR REPLACE trigger STATUS_DEPOSITE_AUDIT
@@ -538,10 +544,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'STATUS_DEPOSIT',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -554,6 +560,7 @@ BEGIN
   END IF;
 END;
 
+/
 
 
 CREATE OR REPLACE trigger STATUS_MATCH_AUDIT
@@ -562,10 +569,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'STATUS_MATCH',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -579,7 +586,7 @@ BEGIN
 END;
 
 
-
+/
 
 CREATE OR REPLACE trigger STATUS_VERIFICATION_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON STATUS_VERIFICATION
@@ -587,10 +594,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'STATUS_VERIFICATION',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -603,6 +610,8 @@ BEGIN
   END IF;
 END;
 
+/
+
 
 CREATE OR REPLACE trigger TEAM_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON TEAM
@@ -610,10 +619,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'TEAM',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -626,7 +635,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger TYPE_PAY_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON TYPE_PAY
@@ -634,10 +643,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'TYPE_PAY',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -650,6 +659,7 @@ BEGIN
   END IF;
 END;
 
+/
 
 
 CREATE OR REPLACE trigger WITHDRAW_AUDIT
@@ -658,10 +668,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'WITHDRAW',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -674,7 +684,7 @@ BEGIN
   END IF;
 END;
 
-
+/
 
 CREATE OR REPLACE trigger WITHDRAW_REQUISITE_AUDIT
 BEFORE INSERT OR DELETE OR UPDATE ON WITHDRAW_REQUISITE
@@ -682,10 +692,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'WITHDRAW_REQUISITE',:NEW.ID,'Insert', v_user, v_ip ,'I');  
@@ -698,6 +708,7 @@ BEGIN
   END IF;
 END;
 
+/
 
 
 CREATE OR REPLACE trigger ZONE_TIME_LOCATION_DEPARTAMEN_AUDIT
@@ -706,10 +717,10 @@ FOR EACH ROW
 ENABLE
 DECLARE
   v_user varchar2 (30);
-  v_date  varchar2(30);
+  v_date timestamp ;
   v_ip varchar2(30);
 BEGIN
-  SELECT user, TO_CHAR(sysdate, 'DD/MON/YYYY HH24:MI:SS'),sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
+  SELECT user, current_timestamp,sys_context('USERENV','IP_ADDRESS')  INTO v_user, v_date ,v_ip FROM dual;
   IF INSERTING THEN
     INSERT INTO master_audit_db (date_time,table_audit,record_id,action_audit,user_audit,ip,Flag) 
     VALUES(v_date,'ZONE_TIME_LOCATION_DEPARTAMEN',:NEW.ID,'Insert', v_user, v_ip ,'I');  
